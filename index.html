@@ -1,31 +1,96 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LA TV Shows | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
-    <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="scripts.js"></script>
+    <title>Movie Master Catalog</title>
+    <meta name="description" content="A catalog of great movies">
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
     <header class="main-header">
-      <h1 class="title">LA TV Shows</h1>
+      <h1 class="title">Movie Master</h1>
+      <p class="subtitle">Your personal movie collection</p>
     </header>
+
+    <div class="controls">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search movies...">
+        <button id="searchBtn">Search</button>
+      </div>
+      
+      <div class="filter-controls">
+        <select id="genreFilter">
+          <option value="">All Genres</option>
+        </select>
+        
+        <select id="yearFilter">
+          <option value="">All Years</option>
+        </select>
+        
+        <select id="ratingFilter">
+          <option value="">Any Rating</option>
+          <option value="9">9+ Stars</option>
+          <option value="8">8+ Stars</option>
+          <option value="7">7+ Stars</option>
+        </select>
+      </div>
+      
+      <button id="addMovieBtn">Add Movie</button>
+    </div>
+
     <div id="card-container"></div>
+
+    <!-- Template card (hidden by default) -->
     <div class="card" style="display: none">
       <div class="card-content">
-        <h2>TV Show Title</h2>
-        <img src="" alt="TV Show Poster" />
-        <ul>
-          <li>Bullet Point 1</li>
-          <li>Bullet Point 2</li>
-          <li>Bullet Point 3</li>
-        </ul>
+        <h2>Movie Title</h2>
+        <img src="" alt="Movie Poster">
+        <div class="movie-info">
+          <p><strong>Year:</strong> <span class="year"></span></p>
+          <p><strong>Genre:</strong> <span class="genre"></span></p>
+          <p><strong>Rating:</strong> <span class="rating"></span></p>
+          <p class="plot">Plot summary goes here</p>
+        </div>
       </div>
     </div>
-    <div class="footer">
-      <button onclick="quoteAlert();">Get A Quote!</button>
-      <button onclick="removeLastCard();">Remove A Card!</button>
+
+    <!-- Add Movie Modal -->
+    <div id="addMovieModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Add New Movie</h2>
+        <form id="movieForm">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" required>
+          </div>
+          <div class="form-group">
+            <label for="year">Year:</label>
+            <input type="number" id="year" min="1900" max="2023" required>
+          </div>
+          <div class="form-group">
+            <label for="genre">Genre:</label>
+            <select id="genre" required>
+              <option value="">Select Genre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rating">Rating (1-10):</label>
+            <input type="number" id="rating" min="1" max="10" step="0.1" required>
+          </div>
+          <div class="form-group">
+            <label for="poster">Poster URL:</label>
+            <input type="url" id="poster" required>
+          </div>
+          <div class="form-group">
+            <label for="plot">Plot Summary:</label>
+            <textarea id="plot" rows="3" required></textarea>
+          </div>
+          <button type="submit">Add Movie</button>
+        </form>
+      </div>
     </div>
+
+    <script src="scripts.js"></script>
   </body>
 </html>
